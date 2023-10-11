@@ -166,5 +166,4 @@ docker rm <id del contenedor>
 
 Referencia: 
 - [Cheatsheet](https://docs.docker.com/get-started/docker_cheatsheet.pdf) by Docker
-- [hands-on-to-docker](https://github.com/edithturn/hands-on-to-docker) by Roxs
 - [challenge](https://github.com/roxsross/The-DevOps-Journey-101/tree/master/CLASE-04) by Roxs
