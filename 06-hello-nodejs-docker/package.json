@@ -1,0 +1,15 @@
+{
+  "name": "@roxsross/hello-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "node server.js"
+  },
+  "author": "RoxsRoss",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
