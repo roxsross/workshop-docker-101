@@ -48,11 +48,12 @@ Si accedemos a `http://localhost:8082`, podemos ver que hemos instalado la versi
 
 ## Stack completo con Docker Compose (MediaWiki + MySQL)
 
-> ⚠️ La contraseña de la base de datos está hardcodeada en el `docker-compose.yaml` solo para simplificar la demo (el password de root sí se randomiza vía `MYSQL_RANDOM_ROOT_PASSWORD`). Nunca hagas esto en producción: usa Docker secrets o variables de entorno inyectadas externamente.
+> ⚠️ Los valores por defecto son solo para la demo (el password de root sí se randomiza vía `MYSQL_RANDOM_ROOT_PASSWORD`). En un entorno real, copia `.env.example` a `.env`, cambia la contraseña ahí y nunca commitees el `.env`.
 
-Levantar solo el contenedor de `mediawiki` sin base de datos solo sirve para explorar la imagen: para completar el instalador web necesitas una base de datos. El `docker-compose.yaml` de esta carpeta define ese stack completo, con `healthcheck` en MySQL y volúmenes nombrados para persistir la wiki y la base de datos.
+Levantar solo el contenedor de `mediawiki` sin base de datos solo sirve para explorar la imagen: para completar el instalador web necesitas una base de datos. El `docker-compose.yaml` de esta carpeta define ese stack completo, con `healthcheck` en MySQL y volúmenes nombrados para persistir la wiki y la base de datos. Las credenciales se leen desde variables de entorno (`.env`, ver `.env.example`).
 
 ```bash
+cp .env.example .env
 docker compose up -d
 
 # Completa el instalador en el navegador

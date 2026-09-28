@@ -1,6 +1,8 @@
 # Hello NodeJS con Docker
 
-Pequeña app Express que sirve `index.html` y muestra la versión leída desde `package.json`. Antes este ejercicio no tenía `Dockerfile`; ahora sí, con build multi-stage sobre `node:24-alpine`, usuario sin privilegios y `HEALTHCHECK`.
+Pequeña app Express que sirve `index.html` y muestra la versión leída desde `package.json`. Antes este ejercicio no tenía `Dockerfile`; ahora sí, con build multi-stage sobre `node:24-alpine`, usuario sin privilegios y `HEALTHCHECK` contra un endpoint `/health` dedicado.
+
+La animación (estrellas + título) está hecha en JavaScript y CSS puro — antes dependía de jQuery, GSAP, Underscore.js y Font Awesome cargados desde CDNs externos, lo que rompía la demo sin conexión a internet.
 
 ## Con Docker CLI
 

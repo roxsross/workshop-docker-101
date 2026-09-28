@@ -1,8 +1,9 @@
 const express = require('express');
-const path = require('path');
-const os = require('os');
+const path = require('node:path');
+const os = require('node:os');
 
 const app = express();
+app.disable('x-powered-by');
 app.set('view engine', 'ejs')
 const PORT = process.env.PORT || 3000;
 
@@ -18,10 +19,15 @@ app.get('/', (req, res) => {
   );
 });
 
-
-app.listen(PORT, () => {
-  console.log(`Servidor Node.js en ejecución en el puerto ${PORT}`);
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Servidor Node.js en ejecución en el puerto ${PORT}`);
+  });
+}
 
 const getIPv4Address = () => {
   const networkInterfaces = os.networkInterfaces();
@@ -34,3 +40,5 @@ const getIPv4Address = () => {
   }
   return null;
 }
+
+module.exports = app;

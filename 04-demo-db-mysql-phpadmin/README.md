@@ -2,13 +2,14 @@
 
 Ejecución de un par de contenedores de `MySQL` y de `PHPMyAdmin` conectados entre sí.
 
-> ⚠️ La contraseña de root está hardcodeada en el `docker-compose.yaml` solo para simplificar la demo. Nunca hagas esto en producción: usa Docker secrets o variables de entorno inyectadas externamente.
+> ⚠️ El valor por defecto (`secret-pw`) es solo para la demo. En un entorno real, copia `.env.example` a `.env`, cambia la contraseña ahí y nunca commitees el `.env`.
 
 ## Opción 1: Docker Compose (recomendado)
 
-`--link` está deprecado hace años; en su lugar usamos una red de Compose (creada automáticamente) y `depends_on` con `condition: service_healthy` para que phpMyAdmin espere a que MySQL esté realmente listo.
+`--link` está deprecado hace años; en su lugar usamos una red de Compose (creada automáticamente) y `depends_on` con `condition: service_healthy` para que phpMyAdmin espere a que MySQL esté realmente listo. La contraseña se lee desde variables de entorno (`.env`, ver `.env.example`).
 
 ```bash
+cp .env.example .env
 docker compose up -d
 
 # Ver logs de la base de datos

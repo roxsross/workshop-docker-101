@@ -2,13 +2,16 @@
 
 Imagen: `mysql:8.4` (rama LTS actual de MySQL; 8.0 llegó a EOL en abril de 2026).
 
-> ⚠️ La contraseña de root está hardcodeada en el `docker-compose.yaml` solo para simplificar la demo. Nunca hagas esto en producción: usa Docker secrets o variables de entorno inyectadas externamente.
+> ⚠️ Los valores por defecto (`my-data-pass`) son solo para la demo. En un entorno real, copia `.env.example` a `.env`, cambia la contraseña ahí y nunca commitees el `.env`.
 
 ## Opción 1: Docker Compose (recomendado)
 
-El `docker-compose.yaml` de esta carpeta usa un volumen nombrado (persistente y portable entre SO), carga automáticamente `data/mysql-data.sql` al iniciar por primera vez (vía `docker-entrypoint-initdb.d`) y agrega `healthcheck`.
+El `docker-compose.yaml` de esta carpeta usa un volumen nombrado (persistente y portable entre SO), carga automáticamente `data/mysql-data.sql` al iniciar por primera vez (vía `docker-entrypoint-initdb.d`) y agrega `healthcheck`. Las credenciales se leen desde variables de entorno (`.env`, ver `.env.example`).
 
 ```bash
+# Copiar y (opcionalmente) personalizar las credenciales
+cp .env.example .env
+
 # Levantar MySQL
 docker compose up -d
 

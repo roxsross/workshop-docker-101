@@ -16,10 +16,10 @@ services:
     image: mysql:8.4
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: mediawiki
-      MYSQL_USER: mediawiki
-      # ⚠️ Solo para demo/local. Nunca hardcodees contraseñas así en producción: usa secrets o variables de entorno externas.
-      MYSQL_PASSWORD: mediawiki-pass
+      # Valores tomados de .env (copia .env.example -> .env). Nunca commitees el .env real.
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mediawiki}
+      MYSQL_USER: ${MYSQL_USER:-mediawiki}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mediawiki-pass}
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     volumes:
       - mediawiki-db:/var/lib/mysql

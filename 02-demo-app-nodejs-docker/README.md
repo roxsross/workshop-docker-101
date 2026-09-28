@@ -1,6 +1,14 @@
 # NodeJS con Docker
 
-Imagen base: `node:24-alpine` (LTS "Krypton"). El `Dockerfile` usa build multi-stage, `npm ci` con `package-lock.json` para builds reproducibles, usuario sin privilegios y `HEALTHCHECK`.
+Imagen base: `node:24-alpine` (LTS "Krypton"). El `Dockerfile` usa build multi-stage, `npm ci` con `package-lock.json` para builds reproducibles, usuario sin privilegios y `HEALTHCHECK` contra un endpoint `/health` dedicado (separado de la home, que hace un render EJS).
+
+## Tests
+
+La app exporta `app` (sin llamar a `listen` fuera de ejecución directa) para poder testearla. Corre los tests con el test runner nativo de Node:
+
+```bash
+npm test
+```
 
 ## Con Docker CLI
 

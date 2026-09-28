@@ -50,7 +50,9 @@ Abrir http://127.0.0.1:5000 en el navegador.
 
 Imagen base: `python:3.14-alpine`. El `Dockerfile` corre como usuario sin privilegios, expone un `HEALTHCHECK` y sirve la app con `gunicorn` (servidor WSGI de producción) en lugar de `flask run`.
 
-> ⚠️ Solo para fines demostrativos: la imagen ejecuta `flask init-db` durante el build, por lo que la base de datos SQLite queda "horneada" dentro de la imagen (no persiste entre rebuilds). Tampoco definas `SECRET_KEY="dev"` (valor por defecto del tutorial de Flask) en un entorno real — sobreescribilo con una variable de entorno o `instance/config.py`.
+La base de datos SQLite vive en `instance/flaskr.sqlite`, montado como volumen nombrado (`flaskr-instance`) para que persista entre `docker compose down`/`up`. Un `docker-entrypoint.sh` corre `flask init-db` automáticamente solo la primera vez (si el archivo todavía no existe en el volumen); en rebuilds o restarts posteriores tus datos se mantienen.
+
+> ⚠️ No definas `SECRET_KEY="dev"` (valor por defecto del tutorial de Flask) en un entorno real — sobreescribilo con una variable de entorno o `instance/config.py`.
 
 ### Con Docker CLI
 

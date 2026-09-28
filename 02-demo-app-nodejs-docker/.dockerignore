@@ -6,3 +6,4 @@ README.md
 Dockerfile
 docker-compose.yaml
 .dockerignore
+*.test.js

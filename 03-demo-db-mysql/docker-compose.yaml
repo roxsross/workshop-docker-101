@@ -4,9 +4,9 @@ services:
     container_name: mysql-container
     restart: unless-stopped
     environment:
-      # ⚠️ Solo para demo/local. Nunca hardcodees contraseñas así en producción: usa secrets o variables de entorno externas.
-      MYSQL_ROOT_PASSWORD: my-data-pass
-      MYSQL_DATABASE: base_de_datos
+      # Valores tomados de .env (copia .env.example -> .env). Nunca commitees el .env real.
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-my-data-pass}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-base_de_datos}
     ports:
       - "3306:3306"
     volumes:
