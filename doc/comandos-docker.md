@@ -65,7 +65,7 @@ docker rmi $(docker images -q)
 
 ```bash
 # Ejecutar contenedor nginx
-docker run --name nginx  -p 80:80 --d nginx
+docker run --name nginx  -p 80:80 -d nginx
 
 # Pruebas Nginx
 curl localhost:80
@@ -132,7 +132,9 @@ FROM node:lts
 WORKDIR /app
 
 # Copie el contenido del directorio actual en el contenedor /app
-ADD . /app
+# (usa COPY en vez de ADD para copias locales simples; ADD solo tiene sentido
+# para descomprimir tarballs o copiar desde una URL)
+COPY . /app
 
 # Poner el puerto 80 al contenedor.
 EXPOSE 80
@@ -162,6 +164,39 @@ docker exec -it <id del contenedor> mysql -u root -p
 # Para detener o eliminar el contenedor
 docker stop <id del contenedor>
 docker rm <id del contenedor>
+```
+
+- Docker Compose (v2/v5, integrado en el CLI como `docker compose`, sin guión)
+
+```bash
+# Levantar los servicios definidos en docker-compose.yaml
+docker compose up -d --build
+
+# Ver logs de todos los servicios
+docker compose logs -f
+
+# Ver estado (incluye el resultado de los healthcheck)
+docker compose ps
+
+# Sincronizar cambios de código en caliente durante desarrollo
+docker compose watch
+
+# Levantar además servicios detrás de un profile opcional
+docker compose --profile tools up -d
+
+# Bajar el stack (agrega -v para borrar también los volúmenes)
+docker compose down
+```
+
+- BuildKit, Bake y Docker Scout (ver el ejercicio [11-docker-buildkit-bake-scout](../11-docker-buildkit-bake-scout/))
+
+```bash
+# Build multi-plataforma declarativo con Bake
+docker buildx bake
+
+# Escanear vulnerabilidades de una imagen con Docker Scout
+docker scout quickview miimagen:1.0
+docker scout cves miimagen:1.0
 ```
 
 Referencia: 

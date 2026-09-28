@@ -1,14 +1,26 @@
-FROM python:3.11-alpine
+# syntax=docker/dockerfile:1
+FROM python:3.14-alpine
 
-ENV FLASK_APP=flaskr
-ENV FLASK_ENV=development
+ENV FLASK_APP=flaskr \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
 WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . /app
 
-RUN pip install -r requirements.txt \
-    && flask init-db
+RUN flask init-db \
+    && addgroup -S app && adduser -S app -G app \
+    && chown -R app:app /app
+USER app
 
 EXPOSE 5000
 
-CMD [ "flask", "run", "--host=0.0.0.0" ]
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD wget -qO- http://127.0.0.1:5000/ || exit 1
+
+# gunicorn como servidor WSGI de producción en lugar de "flask run"
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "flaskr:create_app()"]

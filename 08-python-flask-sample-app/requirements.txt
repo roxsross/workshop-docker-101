@@ -1,6 +1,7 @@
-click              
-flask             
-itsdangerous      
-jinja2           
-markupsafe         
-werkzeug         
+click>=8.1
+flask>=3.1,<4.0
+itsdangerous>=2.2
+jinja2>=3.1
+markupsafe>=2.1
+werkzeug>=3.1
+gunicorn>=23.0

@@ -1,21 +1,13 @@
-# A Simple Hello World Python Demo 
+# Hello World en Python
 
-Example used to demonstrate ```docker init``` CLI for a simple Hello World Python Program
+Ejemplo simple para demostrar la CLI `docker init` con un programa Python de tipo "Hello World".
 
+## Ejecutar la aplicación sin Docker
 
-## Run the application
+Podés correr el script directamente con `python3 app.py`. El handler responde a peticiones GET con un texto fijo y levanta un servidor HTTP en el puerto `8080`.
 
+Al ejecutarlo, vas a poder acceder al servidor en `http://localhost:8080` y ver el siguiente resultado:
 
-
-
-
-You can simply use `python3 app.py` command.
-
-
-This code defines a handler that responds to GET requests with the specified text and starts an HTTP server listening on port 8080. When you run the script, you can access the server at http://localhost:8080 and see the same message as the Python program.
-
-Those commands will start a http server listening on port `8080` 
-and if your request `http://localhost:8080` you'll see the following output: 
 ```shell
 ❯ curl http://localhost:8080
 
@@ -30,59 +22,80 @@ and if your request `http://localhost:8080` you'll see the following output:
 
 
 Hello from Docker!
-
 ```
 
+## Usando `docker init`
 
-## Using Docker init
-
-### Run the following command:
+La carpeta [`sample/`](sample/) es un directorio autocontenido (`app.py`, `Dockerfile`, `docker-compose.yaml`, `.dockerignore`) con el resultado de correr `docker init`, ya actualizado. Para probarlo:
 
 ```bash
- docker init
+cd sample
+docker compose up -d --build
+curl http://localhost:8080
+docker compose down
 ```
 
-This utility will walk you through creating the following files with sensible defaults for your project:
-  - .dockerignore
-  - Dockerfile
-  - docker-compose.yaml
+### Generar los archivos desde cero en un proyecto nuevo
 
-## Modify the Dockerfile
-
+```bash
+docker init
 ```
-FROM python:3.8-alpine
-RUN mkdir /app
-ADD . /app
+
+Este comando te guía para crear los siguientes archivos con valores por defecto razonables para tu proyecto:
+- `.dockerignore`
+- `Dockerfile`
+- `docker-compose.yaml`
+
+## El Dockerfile generado
+
+Actualizado a la última versión estable de Python (`3.14`), usando `COPY` en lugar del `ADD` (deprecado) para archivos locales, ejecutando como usuario sin privilegios y agregando un `HEALTHCHECK`:
+
+```Dockerfile
+FROM python:3.14-alpine
+
 WORKDIR /app
+COPY . /app
+
+RUN addgroup -S app && adduser -S app -G app \
+    && chown -R app:app /app
+USER app
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD wget -qO- http://localhost:8080/ || exit 1
+
 CMD ["python3", "app.py"]
 ```
 
+## El docker-compose.yaml generado
 
+La clave `version:` de nivel superior está obsoleta en la Compose Specification actual (Compose v2/v5) y se puede omitir:
 
-## Modify the Docker Compose file
-
-
-```
- version: '3'
-
+```yaml
 services:
   app:
     build: .
+    image: hello-python:1.0
     ports:
       - "8080:8080"
-    command: python3 app.py
- ```
- 
- ## Running the container service
- 
- ```
-  docker compose up -d --build
- ```
- 
- ## Accessing the Python app
- 
- ```
- curl localhost:8080
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+```
+
+## Levantar el servicio
+
+```bash
+docker compose up -d --build
+```
+
+## Acceder a la app
+
+```
+curl localhost:8080
 
           ##         .
     ## ## ##        ==

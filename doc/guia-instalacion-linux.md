@@ -29,3 +29,5 @@ Docker version 23.10.7, build 23.10.7-0ubuntu5~20.04.2
 ```
 
 Si queres instalar la versión de Docker ofrecida por la empresa: *docker-ce*, podéis encontrar los distintos métodos y las distintas plataformas en la  la siguiente [página](https://docs.docker.com/get-docker/).
+
+> **Recomendación:** el paquete `docker.io` de los repositorios de la distro suele ir varias versiones mayores por detrás (como se ve arriba). Para tener la versión actual de Docker Engine, Compose y Buildx, instala desde el repositorio oficial de `docker-ce` en vez de `apt install docker.io`.

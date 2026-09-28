@@ -47,7 +47,7 @@ Ahora puede comenzar a usar Docker Desktop para ejecutar contenedores en su sist
 
 1.  **Requisitos previos:**
 - Cumplir con los requisitos del sistema: https://docs.docker.com/desktop/install/linux-install/#system-requirements
-- Tener una versión de 64 bits de Ubuntu Lunar Lobster 23.04 o Ubuntu Jammy Jellyfish 22.04 (LTS). Docker Desktop es compatible con la arquitectura x86_64(o amd64).
+- Tener una versión de 64 bits de una distribución soportada actualmente, por ejemplo Ubuntu Noble Numbat 24.04 (LTS) o Ubuntu Jammy Jellyfish 22.04 (LTS). Docker Desktop es compatible con las arquitecturas x86_64 (amd64) y ARM64. Revisa siempre los [requisitos actualizados](https://docs.docker.com/desktop/setup/install/linux/) porque cambian con cada versión.
 
 2.  **Descargar Docker Desktop:**
     -   Abre un navegador web y ve al sitio web oficial de Docker: [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop).
@@ -81,18 +81,19 @@ Cuando se inicia Docker Desktop, crea un contexto dedicado que Docker CLI puede 
 Abra una ventana de Terminal y ejecute el siguiente comando para verificar que Docker esté funcionando correctamente:
 ```shell
     $ docker compose version
-    Docker Compose version v2.17.3
+    Docker Compose version v5.5.0
 
     $ docker --version
-    Docker version 23.0.5, build bc4487a
+    Docker version 29.8.1, build <hash>
 
     $ docker version
     Client: Docker Engine - Community
-    Cloud integration: v1.0.31
-    Version:           23.0.5
-    API version:       1.42
+    Version:           29.8.1
+    API version:       1.51
     <...>
 ```
+
+> Nota: los números de versión cambian seguido. Para ver siempre la versión vigente, revisa la [página de releases de Docker Engine](https://docs.docker.com/engine/release-notes/) y de [Docker Compose](https://github.com/docker/compose/releases).
 
  7. **Uso de Docker:**
 Para permitir que Docker Desktop se inicie al iniciar sesión, en el menú de Docker, seleccione Configuración > General > Iniciar Docker Desktop cuando inicie sesión .

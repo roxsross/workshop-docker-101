@@ -1,0 +1,15 @@
+{
+  "name": "buildkit-bake-scout-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App de demo para el ejercicio de BuildKit, Bake y Docker Scout",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "RoxsRoss",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

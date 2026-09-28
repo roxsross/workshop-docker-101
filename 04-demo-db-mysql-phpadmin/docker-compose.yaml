@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: db
+    restart: unless-stopped
+    environment:
+      # ⚠️ Solo para demo/local. Nunca hardcodees contraseñas así en producción: usa secrets o variables de entorno externas.
+      MYSQL_ROOT_PASSWORD: secret-pw
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: my-admin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+    ports:
+      - "82:80"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql-data:

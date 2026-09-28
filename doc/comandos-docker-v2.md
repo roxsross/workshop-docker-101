@@ -1,4 +1,6 @@
-# Comandos Docker
+# Comandos Docker (versión legada/archivada)
+
+> ⚠️ **Este archivo está archivado y desactualizado.** Usa [`comandos-docker.md`](comandos-docker.md) como referencia principal y actualizada (español, sintaxis moderna `docker compose`, imágenes con tag fijo, Compose v2/v5, BuildKit/Bake/Scout). Este documento se conserva solo como referencia histórica de la sintaxis clásica (`docker container run/ls/rm`, sin `docker compose`).
 
 Play with Docker: https://labs.play-with-docker.com/
 
@@ -50,7 +52,7 @@ docker container run --publish 80:80 --detach --name GDGContainer nginx
 
 # We can specify the port, the name, also the version of the image
 # "-T" command tries to check Nginx configuration
-docker container run --publish 8080:80 --name nginxtest -d nginx:1.23 nginx -T
+docker container run --publish 8080:80 --name nginxtest -d nginx:1.30 nginx -T
 ```
 
 - docker logs for containers
@@ -161,7 +163,9 @@ FROM node:lts
 # Set the working directory in the container to /app
 WORKDIR /app
 # Copy the current directory contents into the container at /app
-ADD . /app
+# (prefer COPY over ADD for plain local copies; ADD is only useful for
+# auto-extracting tarballs or fetching from a URL)
+COPY . /app
 # Make the container's port 80 available to the outside world
 EXPOSE 80
 # Run app.js using node when the container launches

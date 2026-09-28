@@ -18,7 +18,25 @@ Docker es una plataforma de código abierto diseñada para facilitar la creació
 
 Docker ha revolucionado la forma en que se desarrollan y despliegan aplicaciones, ya que permite a los desarrolladores empacar una aplicación y todas sus dependencias en un contenedor, lo que facilita la ejecución de aplicaciones de manera consistente en diferentes entornos, desde las estaciones de trabajo de desarrollo hasta los servidores de producción. Esto ha mejorado la portabilidad, la escalabilidad y la eficiencia de desarrollo y despliegue de aplicaciones.
 
+## 🔥 Actualizado (2026)
 
+Todos los ejercicios fueron revisados y modernizados: imágenes base actuales (`node:24-alpine`, `python:3.14-alpine`, `nginx:1.30-alpine`, `mysql:8.4`, `mediawiki:1.46`), `Dockerfile` con builds multi-stage, usuario sin privilegios y `HEALTHCHECK`, y `docker-compose.yaml` (Compose v2/v5, sin la clave `version:` obsoleta) donde antes solo había comandos sueltos de `docker run`. Se agregaron además dos ejercicios nuevos sobre herramientas actuales del ecosistema Docker.
+
+| # | Ejercicio | Qué muestra |
+|---|-----------|-------------|
+| 01 | [demo-nginx-docker](01-demo-nginx-docker/) | Nginx básico, imagen oficial vs. build propio |
+| 02 | [demo-app-nodejs-docker](02-demo-app-nodejs-docker/) | App Node/Express, build multi-stage |
+| 03 | [demo-db-mysql](03-demo-db-mysql/) | MySQL con volumen nombrado y seed de datos |
+| 04 | [demo-db-mysql-phpadmin](04-demo-db-mysql-phpadmin/) | MySQL + phpMyAdmin en red de Compose |
+| 05 | [mediawiki](05-mediawiki/) | Tags de imagen y versiones, stack con base de datos |
+| 06 | [hello-nodejs-docker](06-hello-nodejs-docker/) | App Express mínima (antes sin `Dockerfile`) |
+| 07 | [helloworld-demo-python](07-helloworld-demo-python/) | `docker init` con Python |
+| 08 | [python-flask-sample-app](08-python-flask-sample-app/) | App Flask con blog/auth, servida con Gunicorn |
+| 09 | [tetris](09-tetris/) | Sitio estático servido con Nginx |
+| 10 | [docker-compose-avanzado](10-docker-compose-avanzado/) | **Nuevo:** `healthcheck` + `depends_on: condition`, `profiles`, `.env`, `docker compose watch` |
+| 11 | [docker-buildkit-bake-scout](11-docker-buildkit-bake-scout/) | **Nuevo:** cache mounts de BuildKit, `docker buildx bake`, `docker scout` |
+
+Consulta también la carpeta [doc/](doc/) para comandos de Docker y guías de instalación.
 
 ---
 ![](https://github.com/roxsross/roxsross/blob/main/images/roxsross-banner-1.png)
