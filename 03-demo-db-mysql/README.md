@@ -1,4 +1,12 @@
-# MySQL con Docker
+# 03 — 🗄️ MySQL con Docker
+
+Acá viene la pregunta que todo el mundo se hace al empezar con contenedores: "si borro el contenedor, ¿pierdo mis datos?". Spoiler: no, si usás volúmenes bien. Este ejercicio te lo demuestra en carne propia.
+
+## 🎯 Qué vas a aprender
+
+- Levantar MySQL en un contenedor con un volumen nombrado (tus datos sobreviven a `docker rm`).
+- Precargar datos automáticamente al primer arranque con `docker-entrypoint-initdb.d`.
+- Manejar credenciales con `.env` en vez de hardcodearlas.
 
 Imagen: `mysql:8.4` (rama LTS actual de MySQL; 8.0 llegó a EOL en abril de 2026).
 
@@ -58,3 +66,10 @@ docker exec -it mysql-container mysql -u root -p
 USE base_de_datos;
 SELECT * FROM usuarios;
 ```
+
+## 🏆 Reto extra
+
+1. Con el stack levantado, insertá una fila nueva en `usuarios` desde el cliente `mysql`.
+2. Corré `docker compose down` (sin `-v`) y volvé a levantar con `docker compose up -d`. ¿Sigue tu fila ahí? Debería.
+3. Ahora probá `docker compose down -v` y levantalo de nuevo. Fijate que volviste a foja cero — esa `-v` es la diferencia entre "reiniciar" y "borrar todo". Es el error más común (y más doloroso) que vas a evitar de por vida.
+

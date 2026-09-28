@@ -1,4 +1,11 @@
-# Hello World en Python
+# 07 — 🐍 Hello World en Python (con `docker init`)
+
+¿Tenés una app y no tenés ni idea de cómo escribir el `Dockerfile`? Esa era la excusa de siempre... hasta que llegó `docker init`. En este ejercicio la CLI te lo escribe por vos, y solo tenés que entender qué generó.
+
+## 🎯 Qué vas a aprender
+
+- Usar `docker init` para generar `Dockerfile`, `.dockerignore` y `docker-compose.yaml` automáticamente.
+- Leer y entender ese Dockerfile generado (usuario sin privilegios, `HEALTHCHECK`, etc.) en vez de copiarlo a ciegas.
 
 Ejemplo simple para demostrar la CLI `docker init` con un programa Python de tipo "Hello World".
 
@@ -109,3 +116,8 @@ curl localhost:8080
 
 Hello from Docker!
 ```
+
+## 🏆 Reto extra
+
+Corré `docker init` en una carpeta vacía nueva (fuera de este repo) apuntando a otro lenguaje que uses (Node, Go, PHP...) y compará el `Dockerfile` que te genera con el de `sample/`. ¿Qué prácticas se repiten (usuario sin privilegios, `HEALTHCHECK`, `.dockerignore`) sin importar el lenguaje? Esas son las que de verdad importa recordar.
+

@@ -1,4 +1,12 @@
-# demo-db-mysql-phpadmin
+# 04 — 🛠️ MySQL + phpMyAdmin
+
+Misma base de datos que el ejercicio 03, pero ahora con una interfaz visual: nada de escribir `SELECT * FROM` a mano. Este ejercicio también te muestra cómo hacer que dos contenedores se hablen entre sí sin el viejo (y deprecado) `--link`.
+
+## 🎯 Qué vas a aprender
+
+- Conectar dos contenedores por una red de Compose, sin `--link`.
+- Usar `depends_on: condition: service_healthy` para que un servicio espere a que el otro esté realmente listo (no solo "iniciado").
+- Administrar MySQL desde una UI web (phpMyAdmin) en vez de la terminal.
 
 Ejecución de un par de contenedores de `MySQL` y de `PHPMyAdmin` conectados entre sí.
 
@@ -52,3 +60,8 @@ docker stop db my-admin
 docker rm db my-admin
 docker network rm demo-net
 ```
+
+## 🏆 Reto extra
+
+Entrá a phpMyAdmin (<http://localhost:82/>), creá una tabla nueva desde la UI (sin escribir SQL) y agregale un par de filas. Después conectate por consola con `docker compose exec db mysql -u root -p` y hacé un `SELECT` para confirmar que es la misma base de datos, solo que ahora la tocaste desde dos lugares distintos. Eso es justamente la gracia de que ambos contenedores compartan red.
+

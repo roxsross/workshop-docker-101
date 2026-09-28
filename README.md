@@ -1,6 +1,7 @@
-# Workshop Docker 101
+# 🐳 Workshop Docker 101
 Time to Demo by RoxsRoss
 
+¿Nunca tocaste Docker o querés repasar desde cero hasta lo más nuevo del ecosistema? Estás en el lugar correcto. Este repo es una colección de 11 ejercicios cortos, prácticos y (sí, en serio) divertidos: cada carpeta es un mini-proyecto que levantás en minutos, rompés, arreglás y entendés jugando. Nada de slides interminables — acá se aprende corriendo comandos.
 
 Docker es una plataforma de código abierto diseñada para facilitar la creación, implementación y administración de aplicaciones y servicios en contenedores. Los contenedores son entornos ligeros y portátiles que pueden incluir aplicaciones y todas sus dependencias, lo que los hace ideales para garantizar que las aplicaciones funcionen de manera consistente en diferentes entornos, desde el desarrollo hasta la producción.
 
@@ -22,19 +23,23 @@ Docker ha revolucionado la forma en que se desarrollan y despliegan aplicaciones
 
 Todos los ejercicios fueron revisados y modernizados: imágenes base actuales (`node:24-alpine`, `python:3.14-alpine`, `nginx:1.30-alpine`, `mysql:8.4`, `mediawiki:1.46`), `Dockerfile` con builds multi-stage, usuario sin privilegios y `HEALTHCHECK`, y `docker-compose.yaml` (Compose v2/v5, sin la clave `version:` obsoleta) donde antes solo había comandos sueltos de `docker run`. Se agregaron además dos ejercicios nuevos sobre herramientas actuales del ecosistema Docker.
 
-| # | Ejercicio | Qué muestra |
+## 🗺️ Elegí tu aventura
+
+No hace falta hacerlos en orden, pero si nunca usaste Docker, del 01 al 04 te da las bases; del 05 al 09 metés apps reales; el 10 y el 11 son el nivel "ya no soy principiante". Cada carpeta tiene su propio README con objetivos, pasos y un reto extra al final.
+
+| # | Ejercicio | Qué vas a lograr |
 |---|-----------|-------------|
-| 01 | [demo-nginx-docker](01-demo-nginx-docker/) | Nginx básico, imagen oficial vs. build propio |
-| 02 | [demo-app-nodejs-docker](02-demo-app-nodejs-docker/) | App Node/Express, build multi-stage |
-| 03 | [demo-db-mysql](03-demo-db-mysql/) | MySQL con volumen nombrado y seed de datos |
-| 04 | [demo-db-mysql-phpadmin](04-demo-db-mysql-phpadmin/) | MySQL + phpMyAdmin en red de Compose |
-| 05 | [mediawiki](05-mediawiki/) | Tags de imagen y versiones, stack con base de datos |
-| 06 | [hello-nodejs-docker](06-hello-nodejs-docker/) | App Express mínima (antes sin `Dockerfile`) |
-| 07 | [helloworld-demo-python](07-helloworld-demo-python/) | `docker init` con Python |
-| 08 | [python-flask-sample-app](08-python-flask-sample-app/) | App Flask con blog/auth, servida con Gunicorn |
-| 09 | [tetris](09-tetris/) | Sitio estático servido con Nginx |
-| 10 | [docker-compose-avanzado](10-docker-compose-avanzado/) | **Nuevo:** `healthcheck` + `depends_on: condition`, `profiles`, `.env`, `docker compose watch` |
-| 11 | [docker-buildkit-bake-scout](11-docker-buildkit-bake-scout/) | **Nuevo:** cache mounts de BuildKit, `docker buildx bake`, `docker scout` |
+| 01 | 🌐 [demo-nginx-docker](01-demo-nginx-docker/) | Levantar tu primer servidor web en contenedores, imagen oficial vs. build propio |
+| 02 | 🟩 [demo-app-nodejs-docker](02-demo-app-nodejs-docker/) | Dockerizar una app Node/Express real con build multi-stage |
+| 03 | 🗄️ [demo-db-mysql](03-demo-db-mysql/) | Una base MySQL persistente que sobrevive a que borres el contenedor |
+| 04 | 🛠️ [demo-db-mysql-phpadmin](04-demo-db-mysql-phpadmin/) | MySQL + phpMyAdmin conectados en red de Compose, sin `--link` |
+| 05 | 📚 [mediawiki](05-mediawiki/) | Tu propia wiki al estilo Wikipedia, corriendo en tu máquina |
+| 06 | 🎉 [hello-nodejs-docker](06-hello-nodejs-docker/) | Una app Express con animación (¡probá clickear el título!) |
+| 07 | 🐍 [helloworld-demo-python](07-helloworld-demo-python/) | `docker init` con Python: de cero a Dockerfile en un comando |
+| 08 | 📝 [python-flask-sample-app](08-python-flask-sample-app/) | Un mini blog Flask con login, servido con Gunicorn |
+| 09 | 🎮 [tetris](09-tetris/) | Jugar Tetris... servido por tu propio contenedor Nginx |
+| 10 | 🚀 [docker-compose-avanzado](10-docker-compose-avanzado/) | **Nuevo:** stack de 4 servicios con `healthcheck`, `profiles`, `.env` y hot-reload |
+| 11 | 🛡️ [docker-buildkit-bake-scout](11-docker-buildkit-bake-scout/) | **Nuevo:** builds cacheados, multi-plataforma y escaneo de vulnerabilidades |
 
 Consulta también la carpeta [doc/](doc/) para comandos de Docker y guías de instalación.
 

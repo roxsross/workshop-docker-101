@@ -1,4 +1,12 @@
-# Ejemplo: Desplegando la aplicación MediaWiki
+# 05 — 📚 Tu propia Wikipedia con MediaWiki
+
+¿Alguna vez te preguntaste qué corre "por debajo" de Wikipedia? Spoiler: MediaWiki. En este ejercicio vas a levantar tu propia wiki completa —con base de datos y todo— y de paso vas a entender por qué las etiquetas (`tags`) de una imagen son mucho más que un número de versión.
+
+## 🎯 Qué vas a aprender
+
+- Cómo las etiquetas de una imagen (`latest`, `1.46`, `1.46-fpm-alpine`...) codifican versión, servicios y arquitectura.
+- Por qué descargar una segunda versión de la misma imagen es rápido (capas compartidas).
+- Levantar un stack real de dos servicios (app + base de datos) con Compose.
 
 MediaWiki es una aplicación web escrita en PHP que nos permite gestionar una wiki. En este ejemplo vamos a hacer un ejemplo simple de despliegue en contenedor usando la imagen [`mediawiki`](https://hub.docker.com/_/mediawiki) que encontramos en Docker Hub.
 
@@ -65,3 +73,8 @@ docker compose up -d
 
 docker compose down
 ```
+
+## 🏆 Reto extra
+
+Completá el instalador web hasta el final y creá tu primera página wiki (probá con "Docker" como título y contá lo que aprendiste). Después bajá el stack con `docker compose down` (sin `-v`) y volvé a levantarlo: tu página debería seguir ahí gracias a los volúmenes nombrados. Si te copaste, instalá una extensión desde el propio instalador y contale a alguien que armaste tu propia wiki en contenedores.
+

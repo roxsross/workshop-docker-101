@@ -1,4 +1,12 @@
-# Flaskr - App Flask con blog/auth
+# 08 — 📝 Flaskr: un mini blog con Flask
+
+El ejercicio más "completo" del repo: una app real con registro, login y posts, no solo un "Hello World". Ideal para ver cómo se dockeriza algo que se parece a un producto de verdad.
+
+## 🎯 Qué vas a aprender
+
+- Dockerizar una app Flask servida con Gunicorn (no `flask run`, que es solo para desarrollo).
+- Por qué "hornear" una base de datos dentro de la imagen es una mala idea, y cómo evitarlo con un volumen + un entrypoint inteligente.
+- Registrarte, loguearte y publicar en un blog que corre 100% en tu contenedor.
 
 Ejemplo basado en el tutorial oficial de Flask ("flaskr"): una app de blog con registro/login de usuarios, servida con Gunicorn dentro del contenedor.
 
@@ -83,3 +91,18 @@ docker compose up -d --build
 docker compose logs -f
 docker compose down
 ```
+
+## 🏆 Reto extra
+
+1. Abrí `http://localhost:5000`, registrate y escribí tu primer post en el blog.
+2. Corré `docker compose down` (sin `-v`) y `docker compose up -d` de nuevo. Tu post debería seguir ahí — gracias al volumen `flaskr-instance`.
+3. Metete dentro del contenedor y mirá la base de datos con tus propios ojos:
+
+```bash
+docker compose exec server python3 -c "
+import sqlite3
+con = sqlite3.connect('instance/flaskr.sqlite')
+print(con.execute('SELECT username FROM user').fetchall())
+"
+```
+
